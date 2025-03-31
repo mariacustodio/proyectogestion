@@ -1,0 +1,72 @@
+/* Asegurar que todo el contenido esté centrado */
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+/* Contenedor del formulario */
+.form-container {
+  background-color: #1e1e1e;
+  padding: 30px;
+  border-radius: 10px;
+  border: 2px solid #4CAF50;
+  width: 350px;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Campos de entrada */
+.form-control {
+  background-color: #333 !important;
+  color: white !important;
+  border: 2px solid #4CAF50 !important;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+/* Placeholder dentro de los campos de entrada */
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
+  opacity: 1 !important; /* Evita que Bootstrap lo haga transparente */
+}
+
+/* Evitar que Bootstrap cambie el estilo al enfocar */
+.form-control:focus {
+  background-color: #333 !important;
+  color: white !important;
+  border-color: #4CAF50 !important;
+  box-shadow: none !important;
+}
+
+/* Botón alineado con los inputs */
+.btn-primary {
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+  margin-top: 5px; /* Reducir espacio con el campo de password */
+}
+
+/* Efecto hover */
+.btn-primary:hover {
+  background-color: #0056b3 !important;
+}
+
+/* Asegurar que el formulario ocupa todo el ancho */
+form {
+  width: 100%;
+}
