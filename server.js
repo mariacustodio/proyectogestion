@@ -1,35 +1,31 @@
-// server.js
+// Requerir las dependencias necesarias
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 require('dotenv').config();
 
-// Inicializar Express
+// Crear la aplicación Express
 const app = express();
-const port = process.env.PORT || 5000;
 
-// Importar el modelo Proyecto
-const Proyecto = require('./models/Proyecto');
-
-// Middleware para parsear el cuerpo de las solicitudes
+// Middlewares
+app.use(cors());
 app.use(express.json());
 
-// Conectar a MongoDB
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Conectado a la base de datos'))
-  .catch((err) => console.log('Error de conexión:', err));
+// Conexión a MongoDB
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => console.log('Conectado a MongoDB'))
+  .catch((err) => console.log('Error de conexión a MongoDB: ', err));
 
-// Ruta para obtener todos los proyectos
-app.get('/proyectos', async (req, res) => {
-  try {
-    // Obtener los proyectos desde la base de datos
-    const proyectos = await Proyecto.find();
-    res.status(200).json(proyectos);  // Enviar los proyectos como respuesta JSON
-  } catch (err) {
-    res.status(500).json({ message: "Error al obtener proyectos" });  // Manejo de errores
-  }
+// Ruta de prueba
+app.get('/', (req, res) => {
+  res.send('¡Hola desde el servidor de Express!');
 });
 
 // Iniciar el servidor
-app.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
