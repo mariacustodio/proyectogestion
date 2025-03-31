@@ -1,55 +1,49 @@
-// app/page.tsx
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
-export default function LoginPage() {
+export default function Form() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Lógica simple de autenticación
-    if (username === "admin" && password === "admin123") {
-      // Guardar token de ejemplo y redirigir
-      localStorage.setItem("token", "fake-token");
-      router.push("/dashboard"); // Redirigir al dashboard
-    } else {
-      alert("Credenciales incorrectas");
-    }
+    // Aquí va la lógica para enviar el formulario
+    console.log({ username, password });
   };
 
   return (
-    <div className="container d-flex justify-content-center align-items-center min-vh-100">
-      <div className="card p-4 shadow-sm" style={{ maxWidth: '400px', width: '100%' }}>
-        <h1 className="text-center mb-4">Iniciar sesión</h1>
-        <form onSubmit={handleLogin}>
+    <div className="container mt-5">
+      <div className="form-container">
+        <h2 className="text-center text-white">Login</h2>
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="username" className="form-label">Username</label>
+            <label htmlFor="username" className="form-label text-white">
+              Username
+            </label>
             <input
               type="text"
-              id="username"
               className="form-control"
+              id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              required
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">Password</label>
+            <label htmlFor="password" className="form-label text-white">
+              Password
+            </label>
             <input
               type="password"
-              id="password"
               className="form-control"
+              id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
             />
           </div>
-          <button type="submit" className="btn btn-primary w-100">Iniciar sesión</button>
+          <div className="text-center">
+            <button type="submit" className="btn btn-primary">Submit</button>
+          </div>
         </form>
       </div>
     </div>
